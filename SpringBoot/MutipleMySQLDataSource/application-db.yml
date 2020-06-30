@@ -1,0 +1,66 @@
+# 公共部分
+
+pagehelper:
+  auto-runtime-dialect: true
+# mybatis-plus 配置
+mybatis-plus:
+  global-config:
+    db-config:
+      table-prefix: t_
+  mapper-locations: classpath*:mapper/*Mapper.xml
+  type-aliases-package: org.openingo.vo
+  configuration:
+    # 返回值参数为map时，值为空也显示key
+    callSettersOnNulls: true
+    # 开启sql打印
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# 数据源数据库    
+ds:
+  db: dbname
+
+# 数据源配置
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${ds.url}/${ds.db}?useSSL=false&serverTimezone=GMT%2B8
+    #最大活跃数
+    maxActive: 20
+    #初始化数量
+    initialSize: 5
+
+# 开发环境
+---
+spring:
+  profiles: dev
+  datasource:
+    username: root
+    password: dbadmin
+logging:
+  level:
+    org.openingo.**.mapper: trace
+
+ds:
+  url: 192.168.1.250:3306
+
+# 测试环境
+---
+spring:
+  profiles: test
+  datasource:
+    username: root
+    password: dbadmin
+
+ds:
+  url: 192.168.1.61:3306
+
+# 生产环境
+---
+spring:
+  profiles: prod
+  datasource:
+    username: root
+    password: dbadmin
+
+ds:
+  url: 192.168.1.144:3306

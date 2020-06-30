@@ -1,0 +1,37 @@
+spring:
+  profiles:
+    active: orcl
+
+mybatis-plus:
+  mapper-locations: classpath*:mapper/*Mapper.xml
+  configuration:
+    # 开启sql打印
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+---
+spring:
+  profiles: orcl # oracle
+  datasource:
+    url: jdbc:oracle:thin:@192.168.1.38:1521:ORCL
+    driver-class-name: oracle.jdbc.OracleDriver
+    username: DEMO
+    password: orcldb123456
+
+mybatis-plus:
+  global-config:
+    db-config:
+      table-prefix: T_
+
+---
+spring:
+  profiles: postgre # postgreSql
+  datasource:
+    url: jdbc:postgresql://192.168.1.38:5432/qicz
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: postgresdb123456
+
+mybatis-plus:
+  global-config:
+    db-config:
+      table-prefix: t_

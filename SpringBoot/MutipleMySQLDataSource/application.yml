@@ -1,0 +1,40 @@
+# 公共配置
+spring:
+  profiles:
+    include: db # 加入db配置
+    active: dev # 默认开发环境
+  application:
+    name: app-name
+  jackson:
+    #参数意义：
+    #JsonInclude.Include.ALWAYS              默认
+    #JsonInclude.Include.NON_DEFAULT     属性为默认值不序列化
+    #JsonInclude.Include.NON_EMPTY         属性为 空（””） 或者为 NULL 都不序列化
+    #JsonInclude.Include.NON_NULL           属性为NULL   不序列化
+    default-property-inclusion: ALWAYS
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  servlet:
+    multipart:
+      max-file-size: 100MB  # Max file size.
+      max-request-size: 100MB # Max request size.
+server:
+  port: 18080
+
+# 自定义配置
+
+---
+# 开发环境
+spring:
+  profiles: dev
+
+
+---
+# 测试环境
+spring:
+  profiles: test
+
+---
+# 生产环境
+spring:
+  profiles: prod
