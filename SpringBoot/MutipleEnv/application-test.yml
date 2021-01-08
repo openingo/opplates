@@ -1,0 +1,26 @@
+# 测试环境
+
+# 数据库配置
+spring:
+  datasource:
+    username: root
+    password: admin
+# mq
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: root
+    password: admin
+# es
+  elasticsearch:
+    rest:
+      uris: http://localhost:9200
+
+ds:
+  host: localhost:3306
+
+# 微服务配置
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:20001/eureka

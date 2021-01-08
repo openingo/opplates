@@ -1,0 +1,54 @@
+# 公共配置，差异化配置在各自的profile中进行设置
+spring:
+  profiles:
+    active: dev # 默认开发环境
+  jackson:
+    #参数意义：
+    #JsonInclude.Include.ALWAYS              默认
+    #JsonInclude.Include.NON_DEFAULT     属性为默认值不序列化
+    #JsonInclude.Include.NON_EMPTY         属性为 空（””） 或者为 NULL 都不序列化
+    #JsonInclude.Include.NON_NULL           属性为NULL   不序列化
+    default-property-inclusion: ALWAYS
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm
+  servlet:
+    multipart:
+      max-file-size: 100MB  # Max file size.
+      max-request-size: 100MB # Max request size.
+  devtools:
+    add-properties: false
+
+# 数据库公共配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${ds.host}/ioc-lc?useSSL=false&serverTimezone=GMT%2B8&autoReconnect=true&failOverReadOnly=false&maxReconnects=10
+    hikari:
+      maximum-pool-size: 30
+      minimum-idle: 10
+      idle-timeout: 60000
+      max-lifetime: 120000
+      connection-timeout: 30000
+      connection-test-query: "SELECT 1"
+
+pagehelper:
+  auto-runtime-dialect: true
+# mybatis-plus 配置
+mybatis-plus:
+  configuration:
+    # 是否开启自动驼峰命名规则
+    map-underscore-to-camel-case: true
+    # 返回值参数为map时，值为空也显示key
+    callSettersOnNulls: true
+
+# 微服务配置
+eureka:
+  instance:
+    prefer-ip-address: true # 显示ip
+    lease-expiration-duration-in-seconds: 10 # 如果现在超过了10秒的间隔（默认是90秒）
+    lease-renewal-interval-in-seconds: 5 # 设置心跳的时间间隔（默认是30秒）
+  client:
+    register-with-eureka: false
+
+# 应用配置
+server:
+  port: 28080

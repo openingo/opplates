@@ -124,7 +124,7 @@
 
 - Oracle
 
-> 表名及字段都需要用大写，mp gererator出来的 date字段为LocalDateTime，但按照此类型写入数据时，类型错误，需要调整为java.util.Date
+> 表名及字段都需要用大写，mp gererator出来的 date字段为LocalDateTime，但按照此类型写入数据时，类型错误，需要调整为java.util.Date，调整`com.baomidou.mybatisplus.generator.config.GlobalConfig#dateType`进行配置。
 
 - PostgreSQL
 

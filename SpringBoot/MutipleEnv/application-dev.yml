@@ -1,0 +1,38 @@
+# 开发环境
+
+# 数据库配置
+spring:
+  datasource:
+    username: root
+    password: admin
+  devtools:
+    add-properties: true
+# mq
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: root
+    password: admin
+# es
+  elasticsearch:
+    rest:
+      uris: http://localhost:9200
+
+# mybatis-plus 配置
+mybatis-plus:
+  configuration:
+    # 开启sql打印
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+logging:
+  level:
+    org.openingo.**.mapper: trace
+
+ds:
+  host: localhost:3306
+
+# 微服务配置
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:20001/eureka
